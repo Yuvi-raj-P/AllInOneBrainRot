@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brainrot Paradise</title>
+    <style>
+        @font-face {
+                font-family: 'Tik';
+                src: url('tiktokfont.otf') format('truetype');
+            }
+            :root {
+        --base-font-size: min(2vw, 24px);
+    }
+        body {
+            margin: 0;
+            overflow: hidden;
+            background: black;
+            font-size: var(--base-font-size);
+        }
+        #container {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+        .dvd-logo {
+            width: 200px;
+            height: auto;
+            position: absolute;
+            fill: #ffffff;
+        }
+        .titleText {
+            position: fixed;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: Tik;
+            text-align: center;
+            font-size: min(4vw, 2em);
+            margin-top: 10px;
+            background: white;
+            padding: 10px 20px;
+            width: 90%;
+            max-width: 600px;
+            border-radius: 12px;
+            color: black;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .titleText span {
+            background: white;
+            padding: 5px 10px;
+            border-radius: 8px;
+            color: black;
+        }
+        .skullImg {
+    position: fixed;
+    left: 62%;
+    padding: min(2vw, 20px);
+    transform: translateX(-50%);
+    width: min(8vw, 2.4em);
+    height: auto;
+    z-index: 2;
+}
+        .video-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: min(90%, 800px);
+            max-width: 300px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        video {
+            width: 100%;
+            border-radius: 12px;
+        }
+        .among-us {
+            width: min(10vw, 100px);
+            height: auto;
+            position: absolute;
+            transition: transform 0.5s;
+            z-index: 1;
+        }
+        .smurfImg {
+    position: fixed;
+    top: 32%;
+    left: 75%;
+    padding: min(2vw, 20px);
+    width: min(30vw, 400px);
+    height: auto;
+    z-index: 1;
+    transform-origin: center;
+}
+
+.smurfImg:hover {
+    animation: glitch 0.2s infinite;
+    filter: brightness(1.2) contrast(1.2);
+}
+.troll{
+    position: fixed;
+    top: 50%;
+    left: 20%;
+    transform: translate(-50%, -50%);
+    width: min(15vw, 200px);
+    height: auto;
+    z-index: 1;
+}
+.clicker-container {
+        position: fixed;
+        left: 5%;
+        top: 70%;
+        transform: translateY(-50%);
+        text-align: center;
+        color: white;
+        font-family: 'Tik';
+        z-index: 2;
+    }
+    .rock-img {
+        width: min(15vw, 150px);
+        height: auto;
+        cursor: pointer;
+        transition: transform 0.1s;
+    }
+    .rock-img:active {
+        transform: scale(1.4);
+    }
+    .counter {
+        font-size: 2em;
+        margin-top: 10px;
+        background: white;
+        color: black;
+        padding: 5px 15px;
+        border-radius: 8px;
+    }
+    .wyr-container {
+        position: fixed;
+        left: 5%;
+        top: 12%;
+        width: min(90%, 300px);
+        text-align: center;
+        font-family: 'Tik';
+        color: white;
+        z-index: 2;
+    }
+    .wyr-question {
+        font-size: 1.2em;
+        margin-bottom: 15px;
+        background: rgba(255, 255, 255, 0.1);
+        padding: 10px;
+        border-radius: 8px;
+    }
+    .wyr-button {
+        width: 100%;
+        padding: 10px;
+        margin: 5px 0;
+        background: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-family: 'Tik';
+        font-size: 1em;
+        transition: transform 0.2s;
+    }
+    .wyr-button:hover {
+        transform: scale(1.05);
+        background: #f0f0f0;
+    }
+    .skibidi{
+        position: fixed;
+        top: 10%;
+        left: 90%;
+        width: min(15vw, 150px);
+    }
+    .fullscreen-gif {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        object-fit: cover;
+        z-index: -1;
+        display: none;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+    
+    .fullscreen-gif.visible {
+        display: block;
+        opacity: 1;
+    }
+    @keyframes glitch {
+        0% {
+            transform: translate(0) skew(0deg);
+            filter: hue-rotate(0deg);
+        }
+        20% {
+            transform: translate(-5px, 5px) skew(10deg);
+            filter: hue-rotate(90deg);
+        }
+        40% {
+            transform: translate(5px, -5px) skew(-10deg);
+            filter: hue-rotate(180deg);
+        }
+        60% {
+            transform: translate(-5px, -5px) skew(10deg);
+            filter: hue-rotate(270deg);
+        }
+        80% {
+            transform: translate(5px, 5px) skew(-10deg);
+            filter: hue-rotate(360deg);
+        }
+        100% {
+            transform: translate(0) skew(0deg);
+            filter: hue-rotate(0deg);
+        }
+    }
+    @media screen and (max-width: 1200px) {
+        .smurfImg {
+            left: 70%;
+        }
+        .video-container {
+            width: 40%;
+        }
+        .skullImg {
+        left: 55%;
+        width: min(7vw, 3.5em);
+    }
+    }
+
+    @media screen and (max-width: 768px) {
+        .smurfImg {
+            left: 60%;
+            width: min(25vw, 300px);
+        }
+        .video-container {
+            width: 60%;
+        }
+        .wyr-container {
+            top: 15%;
+        }
+        .clicker-container {
+            top: 80%;
+        }
+        .skullImg {
+        left: 52%;
+        width: min(6vw, 3em);
+    }
+    }
+
+    @media screen and (max-width: 480px) {
+        .video-container {
+            width: 80%;
+        }
+        .smurfImg {
+            left: 50%;
+            width: min(20vw, 200px);
+        }
+        .troll {
+            left: 15%;
+        }
+        .skibidi {
+            left: 85%;
+        }
+    }
+    </style>
+</head>
+<body>
+    <h1 class="titleText"><span>All In One Brainrot‎ ‎ ‎ ‎ ‎ </span></h1>
+    <img src="skull.png" class="skullImg" alt="skull">
+    <img src="smurf.png" class="smurfImg">
+    <audio id="smurfAudio" preload="auto">
+        <source src="https://files.catbox.moe/jmrpwo.mp3" type="audio/mp3">
+    </audio>
+    <img src="static.png" class="troll" id="trollFace" data-gif="trollface.gif">
+    
+    <div id="container">
+        
+        <svg class="dvd-logo" viewBox="0 0 210 107" xmlns="http://www.w3.org/2000/svg">
+            <path d="M118.895,20.346c0,0-13.743,16.922-13.04,18.001c0.975-1.079-4.934-18.186-4.934-18.186s-1.233-3.597-5.102-15.387H81.81H47.812H22.175l-2.56,11.068h19.299h4.579c12.415,0,19.995,5.132,17.878,14.225c-2.287,9.901-13.123,14.128-24.665,14.128H32.39l5.552-24.208H18.647l-8.192,35.368h27.398c20.612,0,40.166-11.067,43.692-25.288c0.617-2.614,0.53-9.185-1.054-13.053c0-0.093-0.091-0.271-0.178-0.537c-0.087-0.093-0.178-0.722,0.178-0.814c0.172-0.092,0.525,0.271,0.525,0.358c0,0,0.179,0.456,0.351,0.813l17.44,50.315l44.404-51.216l18.761-0.092h4.579c12.424,0,20.09,5.132,17.969,14.225c-2.29,9.901-13.205,14.128-24.75,14.128h-4.405L161,19.987h-19.287l-8.198,35.368h27.398c20.611,0,40.343-11.067,43.604-25.288c3.347-14.225-11.101-25.293-31.89-25.293h-18.143h-22.727C120.923,17.823,118.895,20.346,118.895,20.346L118.895,20.346z"/>
+            <path d="M99.424,67.329C47.281,67.329,5,73.449,5,81.012c0,7.558,42.281,13.678,94.424,13.678c52.239,0,94.524-6.12,94.524-13.678C193.949,73.449,151.664,67.329,99.424,67.329z M96.078,85.873c-11.98,0-21.58-2.072-21.58-4.595c0-2.523,9.599-4.59,21.58-4.59c11.888,0,21.498,2.066,21.498,4.59C117.576,83.801,107.966,85.873,96.078,85.873z"/>
+        </svg>
+    </div>
+    <div class="clicker-container">
+        <img src="noFilter.webp" alt="Rock" class="rock-img" id="rockClicker">
+        <div class="counter" id="clickCounter">Rizz: 0</div>
+    </div>
+    <div class="video-container">
+        <video controls autoplay loop>
+            <source src="brainrot.mp4" type="video/mp4">
+            Fellow rizzlers, your browser does not support the video tag, You Boomers.
+        </video>
+    </div>
+    <div class="wyr-container">
+        <div class="wyr-question" id="wyrQuestion">Would you rather...</div>
+        <button class="wyr-button" id="option1">Option 1</button>
+        <button class="wyr-button" id="option2">Option 2</button>
+    </div>
+    <img src="amongus.png" class="among-us" id="amongUs" alt="Among Us Character">
+    <img src="giphy.webp" class="skibidi">
+    <img src="fullscree.gif" class="fullscreen-gif" id="fullscreenGif">
+    <audio id="skibidiAudio" preload="auto">
+        <source src="https://files.catbox.moe/mnx6c1.mp3" type="audio/mp3">
+    </audio>
+    <script>
+        const logo = document.querySelector('.dvd-logo');
+        let x = 0;
+        let y = 0;
+        let xSpeed = 2;
+        let ySpeed = 2;
+        const questions = [
+        {
+            question: "Would you rather...",
+            option1: "Have unlimited Rizz",
+            option2: "Be able to speak every language"
+        },
+        {
+            question: "Would you rather...",
+            option1: "Be sus forever",
+            option2: "Touch grass never again"
+        },
+        {
+            question: "Would you rather...",
+            option1: "Watch Andrew Tate",
+            option2: "Delete TikTok forever"
+        },
+        {
+            question: "Would you rather...",
+            option1: "Always say 'skill issue'",
+            option2: "Always say 'mad cuz bad'"
+        }
+    ];
+    const wyrQuestion = document.getElementById('wyrQuestion');
+    const option1Btn = document.getElementById('option1');
+    const option2Btn = document.getElementById('option2');
+    let currentQuestion = 0;
+        
+        function changeDVDColor() {
+            const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff'];
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            logo.style.fill = randomColor;
+        }
+
+        function animate() {
+            const containerWidth = window.innerWidth;
+            const containerHeight = window.innerHeight;
+            const logoWidth = logo.clientWidth;
+            const logoHeight = logo.clientHeight;
+
+            x += xSpeed;
+            y += ySpeed;
+
+            if (x + logoWidth >= containerWidth || x <= 0) {
+                xSpeed = -xSpeed;
+                changeDVDColor();
+            }
+            if (y + logoHeight >= containerHeight || y <= 0) {
+                ySpeed = -ySpeed;
+                changeDVDColor();
+            }
+
+            logo.style.left = x + 'px';
+            logo.style.top = y + 'px';
+
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+        const amongUs = document.getElementById('amongUs');
+        let amongUsX = Math.random() * window.innerWidth;
+        let amongUsY = Math.random() * window.innerHeight;
+        const rockClicker = document.getElementById('rockClicker');
+        const clickCounter = document.getElementById('clickCounter');
+        let clicks = 0;
+
+        function moveAmongUs() {
+            amongUs.style.left = amongUsX + 'px';
+            amongUs.style.top = amongUsY + 'px';
+        }
+
+        function avoidCursor(event) {
+            const cursorX = event.clientX;
+            const cursorY = event.clientY;
+            const distance = 100; // Distance to avoid the cursor
+
+            if (Math.abs(cursorX - amongUsX) < distance && Math.abs(cursorY - amongUsY) < distance) {
+                amongUsX = Math.random() * window.innerWidth;
+                amongUsY = Math.random() * window.innerHeight;
+                moveAmongUs();
+                amongUs.textContent = "Sus!";
+            }
+        }
+
+        document.addEventListener('mousemove', avoidCursor);
+        moveAmongUs();
+        const smurfImage = document.querySelector('.smurfImg');
+        const audio = document.getElementById('smurfAudio');
+        
+        smurfImage.addEventListener('mouseenter', () => {
+            audio.play();
+        });
+        
+        smurfImage.addEventListener('mouseleave', () => {
+            audio.pause();
+            audio.currentTime = 0;
+        });
+        const trollFace = document.getElementById('trollFace');
+        const staticImage = trollFace.src;
+        const gifImage = trollFace.dataset.gif;
+
+        trollFace.addEventListener('mouseenter', () => {
+            trollFace.src = gifImage;
+        });
+
+        trollFace.addEventListener('mouseleave', () => {
+            trollFace.src = staticImage;
+        });
+        rockClicker.addEventListener('click', () => {
+            clicks++;
+            clickCounter.textContent = `Rizz: ${clicks}`;
+        });
+        function updateQuestion() {
+        const q = questions[currentQuestion];
+        wyrQuestion.textContent = q.question;
+        option1Btn.textContent = q.option1;
+        option2Btn.textContent = q.option2;
+    }
+
+    function nextQuestion() {
+        currentQuestion = (currentQuestion + 1) % questions.length;
+        updateQuestion();
+    }
+
+    option1Btn.addEventListener('click', nextQuestion);
+    option2Btn.addEventListener('click', nextQuestion);
+
+    updateQuestion();
+    const skibidi = document.querySelector('.skibidi');
+const fullscreenGif = document.getElementById('fullscreenGif');
+const skibidiAudio = document.getElementById('skibidiAudio');
+let isPlaying = false;
+let timeoutId;
+
+skibidi.addEventListener('mouseenter', () => {
+    clearTimeout(timeoutId);
+    fullscreenGif.classList.add('visible');
+    if (!isPlaying) {
+        skibidiAudio.play();
+        isPlaying = true;
+    }
+});
+
+skibidi.addEventListener('mouseleave', () => {
+    timeoutId = setTimeout(() => {
+        fullscreenGif.classList.remove('visible');
+        skibidiAudio.pause();
+        skibidiAudio.currentTime = 0;
+        isPlaying = false;
+    }, 300);
+});
+    </script>
+</body>
+</html>
