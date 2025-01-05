@@ -187,6 +187,32 @@
         display: block;
         opacity: 1;
     }
+    .version2-button {
+        position: fixed;
+        top: 2%;
+        right: 19%;
+        padding: 10px 20px;
+        background: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-family: 'Tik';
+        font-size: 1em;
+        transition: transform 0.2s;
+        animation: scaleAnimation 1s infinite alternate;
+    }
+    .version2-button:hover {
+        transform: scale(1.05);
+        background: #f0f0f0;
+    }
+    @keyframes scaleAnimation {
+        0% {
+            transform: scale(1);
+        }
+        100% {
+            transform: scale(1.2);
+        }
+    }
     @keyframes glitch {
         0% {
             transform: translate(0) skew(0deg);
@@ -294,6 +320,8 @@
         <button class="wyr-button" id="option1">Option 1</button>
         <button class="wyr-button" id="option2">Option 2</button>
     </div>
+    <a href="v2.html" class="version2-button">Skibidi Game!(v2)</a>
+    
     <img src="amongus.png" class="among-us" id="amongUs" alt="Among Us Character">
     <img src="giphy.webp" class="skibidi">
     <img src="fullscree.gif" class="fullscreen-gif" id="fullscreenGif">
@@ -338,6 +366,7 @@
             const randomColor = colors[Math.floor(Math.random() * colors.length)];
             logo.style.fill = randomColor;
         }
+        
 
         function animate() {
             const containerWidth = window.innerWidth;
