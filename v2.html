@@ -122,9 +122,6 @@
         }
       }
 
-      /**
-       * Collision check function
-       */
       function boxCollision({ box1, box2 }) {
         const xCollision = box1.right >= box2.left && box1.left <= box2.right
         const yCollision =
@@ -133,8 +130,6 @@
 
         return xCollision && yCollision && zCollision
       }
-
-      // Player object: loads a GLB instead of a box
       const player = {
         scene: null,
         velocity: { x: 0, y: 0, z: 0 },
@@ -177,11 +172,9 @@
           }
         }
       }
-
-      // Load your player's .glb model
       const loader = new GLTFLoader()
       loader.load(
-        'models/mewing.glb',
+        'mewing.glb',
         (gltf) => {
           player.scene = gltf.scene
           player.scene.scale.set(0.05, 0.05, 0.05)
@@ -194,8 +187,6 @@
           console.error('Error loading player GLB model:', err)
         }
       )
-
-      // Create ground
       const ground = new Box({
         width: 10,
         height: 0.5,
@@ -205,8 +196,6 @@
       })
       ground.receiveShadow = true
       scene.add(ground)
-
-      // Light sources
       const light = new THREE.DirectionalLight(0xffffff, 1)
       light.position.y = 3
       light.position.z = 1
@@ -214,8 +203,6 @@
       scene.add(light)
 
       scene.add(new THREE.AmbientLight(0xffffff, 0.5))
-
-      // Key handling
       const keys = {
         a: { pressed: false },
         d: { pressed: false },
@@ -238,7 +225,6 @@
             keys.w.pressed = true
             break
           case 'Space':
-            // Jump
             player.velocity.y = 0.08
             break
         }
@@ -261,11 +247,10 @@
         }
       })
 
-      // Enemy model loader
       let enemyModel = null
       const enemyLoader = new GLTFLoader()
       enemyLoader.load(
-        'models/skibi.glb',
+        'skibi.glb',
         (gltf) => {
           enemyModel = gltf.scene
           enemyModel.scale.set(0.6, 0.6, 0.6)
@@ -276,16 +261,13 @@
           console.error('Error loading enemy GLB model:', err)
         }
       )
-
-      // We keep an array of enemies
       const enemies = []
       let frames = 0
       let spawnRate = 200
 
       function spawnEnemy() {
-        if (!enemyModel) return // Wait until it's loaded
+        if (!enemyModel) return 
 
-        // Clone the enemy model
         const enemyScene = enemyModel.clone()
         enemyScene.position.set(
           (Math.random() - 0.5) * 10,
@@ -293,8 +275,6 @@
           -20
         )
         scene.add(enemyScene)
-
-        // We track bounding info for collision similar to "Box"
         const enemyData = {
           scene: enemyScene,
           width: 1,
@@ -324,8 +304,6 @@
             if (this.zAcceleration) this.velocity.z += 0.0003
             this.scene.position.x += this.velocity.x
             this.scene.position.z += this.velocity.z
-
-            // Gravity
             this.velocity.y += this.gravity
             if (boxCollision({ box1: this, box2: ground })) {
               const friction = 0.5
@@ -343,26 +321,19 @@
         const animationId = requestAnimationFrame(animate)
         renderer.render(scene, camera)
 
-        // Player horizontal movement
         player.velocity.x = 0
         player.velocity.z = 0
         if (keys.a.pressed) player.velocity.x = -0.05
         else if (keys.d.pressed) player.velocity.x = 0.05
         if (keys.s.pressed) player.velocity.z = 0.05
         else if (keys.w.pressed) player.velocity.z = -0.05
-
-        // Update player
         player.update(ground)
-
-        // Update enemies
         enemies.forEach((enemy) => {
           enemy.update(ground)
           if (boxCollision({ box1: player, box2: enemy })) {
             cancelAnimationFrame(animationId)
           }
         })
-
-        // Spawn new enemies
         if (frames % spawnRate === 0) {
           if (spawnRate > 20) spawnRate -= 20
           spawnEnemy()
